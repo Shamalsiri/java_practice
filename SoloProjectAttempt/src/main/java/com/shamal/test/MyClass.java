@@ -16,10 +16,10 @@ public class MyClass {
     //main method
     public static void main (String[] args)
     {
-//        getStaticVar();
-//        callMethodOutsideClass();
-//        Calculations.addFive(6);
-//        System.out.println(usingEnums());
+        getStaticVar();
+        callMethodOutsideClass();
+        Calculations.addFive(6);
+        System.out.println(usingEnums());
         callingSuperClass();
 
     }
