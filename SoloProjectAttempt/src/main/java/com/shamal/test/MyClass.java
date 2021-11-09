@@ -1,6 +1,8 @@
 package com.shamal.test;
 
-public class MyClass {
+import com.shamal.package2.Pack2;
+
+public class MyClass{
 
     //static int - Global Variable
     static int i;
@@ -16,11 +18,13 @@ public class MyClass {
     //main method
     public static void main (String[] args)
     {
-        getStaticVar();
-        callMethodOutsideClass();
-        Calculations.addFive(6);
-        System.out.println(usingEnums());
-        callingSuperClass();
+
+//        getStaticVar();
+//        callMethodOutsideClass();
+//        Calculations.addFive(6);
+//        System.out.println(usingEnums());
+//        callingSuperClass();
+        callingPackage2();
 
     }
 
@@ -141,5 +145,14 @@ public class MyClass {
         subClass.printCommonMethod();
 
 
+    }
+
+    private static void callingPackage2()
+    {
+        Pack2 pack2 = new Pack2();
+        System.out.println(pack2.pack2Str);
+        pack2.pack2Method();
+        //pack2.pack2Str1;  // Can't access pack2Str1 outside the package because it's protected.
+        pack2.myMethod(); // Can access myMethod because it's public
     }
 }
