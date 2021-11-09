@@ -162,8 +162,10 @@ public class MyClass{
     {
         MyPrivateClass myPrivateClass = new MyPrivateClass();
         myPrivateClass.myMethod();
+        myPrivateClass.printString();
         myPrivateClass.setStr("Hello World!");
         System.out.println(myPrivateClass.getStr());
+
     }
 }
 
