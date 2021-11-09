@@ -24,7 +24,9 @@ public class MyClass{
 //        Calculations.addFive(6);
 //        System.out.println(usingEnums());
 //        callingSuperClass();
-        callingPackage2();
+//        callingPackage2();
+        encapsulation();
+
 
     }
 
@@ -155,4 +157,13 @@ public class MyClass{
         //pack2.pack2Str1;  // Can't access pack2Str1 outside the package because it's protected.
         pack2.myMethod(); // Can access myMethod because it's public
     }
+
+    private static void encapsulation()
+    {
+        MyPrivateClass myPrivateClass = new MyPrivateClass();
+        myPrivateClass.myMethod();
+        myPrivateClass.setStr("Hello World!");
+        System.out.println(myPrivateClass.getStr());
+    }
 }
+
