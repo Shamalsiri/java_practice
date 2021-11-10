@@ -25,8 +25,9 @@ public class MyClass{
 //        System.out.println(usingEnums());
 //        callingSuperClass();
 //        callingPackage2();
-        encapsulation();
-        polymorphism();
+//        encapsulation();
+//        polymorphism();
+        callingAbstractClasses();
 
     }
 
@@ -212,6 +213,18 @@ public class MyClass{
         molc.myMethod("Just a string here");
         molc.myMethod("String and a int", 5);
         molc.myMethod(55);
+    }
+
+    // This method contains examples of using abstract classes and abstract methods
+    private static void callingAbstractClasses()
+    {
+        Shape s = new Circle("Red", 5);
+        System.out.println(s.info());
+
+        s = new Square("Blue", 10);
+        System.out.println(s.info());
+
+
     }
 }
 
