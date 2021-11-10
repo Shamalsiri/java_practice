@@ -25,8 +25,10 @@ public class MyClass{
 //        System.out.println(usingEnums());
 //        callingSuperClass();
 //        callingPackage2();
-        encapsulation();
-        polymorphism();
+//        encapsulation();
+//        polymorphism();
+        callingAbstractClasses();
+        callingAbstractInterface();
 
     }
 
@@ -212,6 +214,30 @@ public class MyClass{
         molc.myMethod("Just a string here");
         molc.myMethod("String and a int", 5);
         molc.myMethod(55);
+    }
+
+    // This method contains examples of using abstract classes and abstract methods
+    private static void callingAbstractClasses()
+    {
+        Shape s = new Circle("Red", 5);
+        System.out.println(s.info());
+
+        s = new Square("Blue", 10);
+        System.out.println(s.info());
+    }
+
+    // This method shows the use of abstract interfaces
+    // Note, static methods can be called directly
+    private static void callingAbstractInterface()
+    {
+        ShapeI c = new CircleI("Red", 2);
+        System.out.println(c.info());
+
+        ShapeI s = new SquareI("Blue", 5);
+        System.out.println(s.info());
+
+        ShapeI.staticMethod();
+        System.out.println("The global variable in the Interface: " + ShapeI.i);
     }
 }
 
