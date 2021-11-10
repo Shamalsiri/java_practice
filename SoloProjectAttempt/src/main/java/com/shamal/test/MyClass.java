@@ -26,7 +26,7 @@ public class MyClass{
 //        callingSuperClass();
 //        callingPackage2();
         encapsulation();
-
+        polymorphism();
 
     }
 
@@ -149,6 +149,8 @@ public class MyClass{
 
     }
 
+    // This method shows what it's like to call classes from other packages
+    // If looked into the classes in Package 2, ACCESS MODIFIERS are used.
     private static void callingPackage2()
     {
         Pack2 pack2 = new Pack2();
@@ -158,14 +160,59 @@ public class MyClass{
         pack2.myMethod(); // Can access myMethod because it's public
     }
 
+    //This method shows example of encapsulation
+    // Encapsulation is the use of get and set methods and also using access modifiers for security of the program
     private static void encapsulation()
     {
+        System.out.println("\nUse of Encapsulation\n");
         MyPrivateClass myPrivateClass = new MyPrivateClass();
         myPrivateClass.myMethod();
         myPrivateClass.printString();
-        myPrivateClass.setStr("Hello World!");
+        myPrivateClass.setStr("I'm setting the string here");
         System.out.println(myPrivateClass.getStr());
 
     }
+    //This method shows the use of polymorphism
+    //it is used with classes that shows an "is a" relationship
+    // This method also shows the use of overloading methods as well
+    private static void polymorphism()
+    {
+
+        System.out.println("\nUse of Polymorphism\n");
+        Employee e = new Employee();
+        System.out.println("Employee Salary: " + e.salary());
+
+        //Because FullTime Class extends employee, there is an "Is A" relationship between the 2 classes
+        // FullTime is an Employee
+        e = new FullTime();
+        System.out.println("FullTime Salary: " + e.salary() );
+
+        // Can't call e.myMethod() from the FullTime class because e is Reference Variable of type Employee
+        // and Employee Class doesn't contain a myMethod() method.
+        // Therefore, in order to class myMethod in the FullTime class, A FullTime reference variable is needed
+        FullTime f = new FullTime();
+        f.myMethod();
+
+        //Contractor "is a" Employee
+        e = new Contractor();
+        System.out.println("Contractor Salary: " + e.salary());
+
+
+        System.out.println("\nUsing Overridden methods\n");
+        //Static methods can't be overridden, but they can have the same method name
+        //Static methods are called using the class name
+        System.out.println(Employee.Designation());
+        System.out.println(FullTime.Designation());
+        System.out.println(Contractor.Designation());
+
+
+        System.out.println("\nUsing Overloaded Methods\n");
+        //Overloaded methods contain the same method name but the parameters are different.
+        MyOverloadingClass molc = new MyOverloadingClass();
+        molc.myMethod("Just a string here");
+        molc.myMethod("String and a int", 5);
+        molc.myMethod(55);
+    }
 }
+
 
