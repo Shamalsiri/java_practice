@@ -28,6 +28,7 @@ public class MyClass{
 //        encapsulation();
 //        polymorphism();
         callingAbstractClasses();
+        callingAbstractInterface();
 
     }
 
@@ -223,8 +224,20 @@ public class MyClass{
 
         s = new Square("Blue", 10);
         System.out.println(s.info());
+    }
 
+    // This method shows the use of abstract interfaces
+    // Note, static methods can be called directly
+    private static void callingAbstractInterface()
+    {
+        ShapeI c = new CircleI("Red", 2);
+        System.out.println(c.info());
 
+        ShapeI s = new SquareI("Blue", 5);
+        System.out.println(s.info());
+
+        ShapeI.staticMethod();
+        System.out.println("The global variable in the Interface: " + ShapeI.i);
     }
 }
 
