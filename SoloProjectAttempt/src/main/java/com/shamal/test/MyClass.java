@@ -239,6 +239,11 @@ public class MyClass{
         ShapeI.staticMethod();
         System.out.println("The global variable in the Interface: " + ShapeI.i);
     }
+
+    private static void exceptionHandling()
+    {
+        
+    }
 }
 
 
