@@ -2,6 +2,8 @@ package com.shamal.test;
 
 import com.shamal.package2.Pack2;
 
+import java.io.*;
+
 public class MyClass{
 
     //static int - Global Variable
@@ -27,9 +29,9 @@ public class MyClass{
 //        callingPackage2();
 //        encapsulation();
 //        polymorphism();
-        callingAbstractClasses();
-        callingAbstractInterface();
-
+//        callingAbstractClasses();
+//        callingAbstractInterface();
+        exceptionHandling();
     }
 
     // This method introduces and explains how the static key word works
@@ -240,9 +242,28 @@ public class MyClass{
         System.out.println("The global variable in the Interface: " + ShapeI.i);
     }
 
-    private static void exceptionHandling()
-    {
-        
+    // There are 2 types of exception handling methods
+    // 1. Try-Catch block
+    // 2. Method throws exception
+    private static void exceptionHandling() {
+
+        /*//Example of Exception
+        int array[]= {1,2,3};
+        System.out.println(array[3]);*/
+        try {
+            throwException();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Example of throwing an exception
+    // Note the sys.out line didn't run
+    // Note exit with code 1
+    private static void throwException() throws FileNotFoundException {
+        File file = new File("c://myfile.txt");
+        FileReader fw = new FileReader(file);
+        System.out.println("Prints after the exception");
     }
 }
 
