@@ -250,6 +250,9 @@ public class MyClass{
         /*//Example of Exception
         int array[]= {1,2,3};
         System.out.println(array[3]);*/
+        System.out.println("\nUsing Try- Catch Blocks\n");
+        usingTryCatchBlocks();
+        System.out.println("\n Throw exception \n");
         try {
             throwException();
         } catch (FileNotFoundException e) {
@@ -257,14 +260,31 @@ public class MyClass{
         }
     }
 
+    // Example of a try-catch block to handle exception
+    // Note: sys.out line did run this time
+    private static void usingTryCatchBlocks()
+    {
+        File file = new File("c://trycatch.txt");
+        try {
+            FileReader fw = new FileReader(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Prints after the exception");
+
+    }
+    
     // Example of throwing an exception
     // Note the sys.out line didn't run
-    // Note exit with code 1
+    // Note exit with code 0
     private static void throwException() throws FileNotFoundException {
-        File file = new File("c://myfile.txt");
+        File file = new File("c://throw.txt");
         FileReader fw = new FileReader(file);
         System.out.println("Prints after the exception");
     }
+
+
 }
 
 
