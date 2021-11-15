@@ -2,6 +2,9 @@ package com.shamal.test;
 
 import com.shamal.package2.Pack2;
 
+import java.io.*;
+import java.text.FieldPosition;
+
 public class MyClass{
 
     //static int - Global Variable
@@ -29,8 +32,8 @@ public class MyClass{
 //        polymorphism();
 //        callingAbstractClasses();
 //        callingAbstractInterface();
+        exceptionHandling();
         fileOperations();
-
     }
 
     // This method introduces and explains how the static key word works
@@ -241,9 +244,121 @@ public class MyClass{
         System.out.println("The global variable in the Interface: " + ShapeI.i);
     }
 
+    // There are 2 types of exception handling methods
+    // 1. Try-Catch block
+    // 2. Method throws exception
+    private static void exceptionHandling() {
+
+        /*//Example of Exception
+        int array[]= {1,2,3};
+        System.out.println(array[3]);*/
+        System.out.println("\nUsing Try- Catch Blocks\n");
+        usingTryCatchBlocks();
+       /* System.out.println("\n Throw exception \n");
+        try {
+            throwException();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }*/
+        System.out.println("\n Try-Catch + Throw Exception \n");
+        try {
+            tryCatchAndThrowExceptions();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("\n Initalize object in try block");
+        initializeInTry();
+
+        System.out.println("\nUser Defined Exception");
+        try {
+            userDefinedException();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Example of a try-catch block to handle exception
+    // Note: sys.out line did run this time
+    private static void usingTryCatchBlocks()
+    {
+        File file = new File("c://trycatch.txt");
+        try {
+            FileReader fr = new FileReader(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Prints after the exception:try-Catch");
+
+    }
+
+    // Example of throwing an exception
+    // Note the sys.out line didn't run
+    // Note program exit with code 0
+    private static void throwException() throws FileNotFoundException {
+        File file = new File("c://throw.txt");
+        FileReader fr = new FileReader(file);
+        System.out.println("Prints after the exception: Throw");
+    }
+
+    // Example of using both Try Catch and throwing exception
+    // Note the sys.out line didn't run
+    // Note program exit with code 0
+    private static void tryCatchAndThrowExceptions() throws FileNotFoundException {
+        File file = new File("c://tryCatchAndThrow.txt");
+        FileReader fr = null;
+        try {
+            fr = new FileReader(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+
+        }
+        finally {
+            try {
+                if (fr != null)
+                {
+                    fr.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("Prints after the exception:combo");
+    }
+
+    public static void initializeInTry()
+    {
+        File file = new File("c://tryCatchAndThrow.txt");
+        try(FileReader fr = new FileReader(file))
+        {
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Prints after the exception: Initialize in try!");
+    }
+
+    public static void userDefinedException() throws FileNotFoundException
+    {
+        File file = new File("c://UserDefinedException.txt");
+        try
+        {
+            //FileReader fr = new FileReader(file);
+            System.out.println("Printing in User Defined Exception:");
+            throw new MyException();
+        } catch (MyException e) {
+            e.printException();
+            e.printStackTrace();
+        }
+        System.out.println("Prints after the exception: Initialize in try!");
+
     public static void fileOperations()
     {
         fileOperations fO = new fileOperations();
+
     }
 }
 
