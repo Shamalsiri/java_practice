@@ -5,8 +5,17 @@ import java.io.*;
 public class fileOperations {
     protected fileOperations()
     {
+        System.out.println("Creating Sub folder structure");
+        String dirPath = "folder"+File.separator+"subFolder";
+        File dir = new File(dirPath);
+        if(!dir.exists())
+        {
+            dir.mkdirs();
+        }
+
         //Creating a File
-        File file = new File("file.txt");
+        File file = new File(dir + File.separator + "file.txt");
+        //File file = new File("file.txt");
         if(!file.exists())
         {
             try {
@@ -79,7 +88,7 @@ public class fileOperations {
             e.printStackTrace();
         }
 
-        System.out.println("\nDeleting File");
-        file.delete();
+        System.out.println("\n Can Delete File here");
+        //file.delete();
     }
 }
