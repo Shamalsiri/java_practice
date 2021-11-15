@@ -3,6 +3,7 @@ package com.shamal.test;
 import com.shamal.package2.Pack2;
 
 import java.io.*;
+import java.text.FieldPosition;
 
 public class MyClass{
 
@@ -258,6 +259,12 @@ public class MyClass{
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        System.out.println("\n Try-Catch + Throw Exception \n");
+        try {
+            tryCatchAndThrowExceptions();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     // Example of a try-catch block to handle exception
@@ -274,17 +281,29 @@ public class MyClass{
         System.out.println("Prints after the exception");
 
     }
-    
+
     // Example of throwing an exception
     // Note the sys.out line didn't run
-    // Note exit with code 0
+    // Note program exit with code 0
     private static void throwException() throws FileNotFoundException {
         File file = new File("c://throw.txt");
         FileReader fw = new FileReader(file);
         System.out.println("Prints after the exception");
     }
 
-
+    // Example of using both Try Catch and throwing exception
+    // Note the sys.out line didn't run
+    // Note program exit with code 0
+    private static void tryCatchAndThrowExceptions() throws FileNotFoundException {
+        File file = new File("c://tryCatchAndThrow.txt");
+        try {
+            FileReader fw = new FileReader(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            throw e;
+        }
+        System.out.println("Prints after the exception");
+    }
 }
 
 
