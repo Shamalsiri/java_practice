@@ -253,15 +253,25 @@ public class MyClass{
         System.out.println(array[3]);*/
         System.out.println("\nUsing Try- Catch Blocks\n");
         usingTryCatchBlocks();
-        System.out.println("\n Throw exception \n");
+       /* System.out.println("\n Throw exception \n");
         try {
             throwException();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }
+        }*/
         System.out.println("\n Try-Catch + Throw Exception \n");
         try {
             tryCatchAndThrowExceptions();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("\n Initalize object in try block");
+        initializeInTry();
+
+        System.out.println("\nUser Defined Exception");
+        try {
+            userDefinedException();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -273,12 +283,12 @@ public class MyClass{
     {
         File file = new File("c://trycatch.txt");
         try {
-            FileReader fw = new FileReader(file);
+            FileReader fr = new FileReader(file);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
-        System.out.println("Prints after the exception");
+        System.out.println("Prints after the exception:try-Catch");
 
     }
 
@@ -287,8 +297,8 @@ public class MyClass{
     // Note program exit with code 0
     private static void throwException() throws FileNotFoundException {
         File file = new File("c://throw.txt");
-        FileReader fw = new FileReader(file);
-        System.out.println("Prints after the exception");
+        FileReader fr = new FileReader(file);
+        System.out.println("Prints after the exception: Throw");
     }
 
     // Example of using both Try Catch and throwing exception
@@ -296,13 +306,53 @@ public class MyClass{
     // Note program exit with code 0
     private static void tryCatchAndThrowExceptions() throws FileNotFoundException {
         File file = new File("c://tryCatchAndThrow.txt");
+        FileReader fr = null;
         try {
-            FileReader fw = new FileReader(file);
+            fr = new FileReader(file);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            throw e;
+
         }
-        System.out.println("Prints after the exception");
+        finally {
+            try {
+                if (fr != null)
+                {
+                    fr.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("Prints after the exception:combo");
+    }
+
+    public static void initializeInTry()
+    {
+        File file = new File("c://tryCatchAndThrow.txt");
+        try(FileReader fr = new FileReader(file))
+        {
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Prints after the exception: Initialize in try!");
+    }
+
+    public static void userDefinedException() throws FileNotFoundException
+    {
+        File file = new File("c://UserDefinedException.txt");
+        try
+        {
+            //FileReader fr = new FileReader(file);
+            System.out.println("Printing in User Defined Exception:");
+            throw new MyException();
+        } catch (MyException e) {
+            e.printException();
+            e.printStackTrace();
+        }
+        System.out.println("Prints after the exception: Initialize in try!");
     }
 }
 
