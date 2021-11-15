@@ -27,8 +27,9 @@ public class MyClass{
 //        callingPackage2();
 //        encapsulation();
 //        polymorphism();
-        callingAbstractClasses();
-        callingAbstractInterface();
+//        callingAbstractClasses();
+//        callingAbstractInterface();
+        fileOperations();
 
     }
 
@@ -238,6 +239,11 @@ public class MyClass{
 
         ShapeI.staticMethod();
         System.out.println("The global variable in the Interface: " + ShapeI.i);
+    }
+
+    public static void fileOperations()
+    {
+        fileOperations fO = new fileOperations();
     }
 }
 
