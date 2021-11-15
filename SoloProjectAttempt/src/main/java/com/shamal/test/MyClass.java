@@ -1,6 +1,11 @@
 package com.shamal.test;
 
-public class MyClass {
+import com.shamal.package2.Pack2;
+
+import java.io.*;
+
+public class MyClass
+{
 
     //static int - Global Variable
     static int i;
@@ -16,12 +21,54 @@ public class MyClass {
     //main method
     public static void main (String[] args)
     {
+
+        // Using Static Variables
+        System.out.println("\n----Using Static Variables----");
         getStaticVar();
+
+        // Calls methods in other classes than myClass
+        System.out.println("\n----Calling methods in other classes than myClass----");
         callMethodOutsideClass();
-        Calculations.addFive(6);
+
+        // Calls static methods in other classes than myClass
+        System.out.println("\n----Calling static methods in other classes than myClass----");
+        System.out.println(Calculations.addFive(6));
+
+        // Using Enums
+        System.out.println("\n----Using Enums----");
         System.out.println(usingEnums());
+
+        // Java Inheritance
+        System.out.println("\n----Java Inheritance----");
         callingSuperClass();
 
+        System.out.println("\n----Accessing Other Packages----");
+        // Accessing other packages
+        callingPackage2();
+
+        System.out.println("\n----Encapsulation----");
+        // Encapsulation
+        encapsulation();
+
+        System.out.println("\n----Polymorphism----");
+        // Polymorphism
+        polymorphism();
+
+        System.out.println("\n----Using Abstract Classes----");
+        // Using Abstract Classes
+        callingAbstractClasses();
+
+        System.out.println("\n----Using Abstract Interfaces----");
+        // Using Abstract Interfaces
+        callingAbstractInterface();
+
+        System.out.println("\n----Exception Handling----");
+        // Exception Handling
+        exceptionHandling();
+
+        System.out.println("\n----File Operations----");
+        //File Operations
+        fileOperations();
     }
 
     // This method introduces and explains how the static key word works
@@ -80,7 +127,7 @@ public class MyClass {
     {
 
         // First way
-        // Non static method in Calculation class
+        // Non-static method in Calculation class
         // need to instantiate class that contains the method that you want to call
         MyClass myObject = new MyClass();
         Calculations myCalc = new Calculations();
@@ -142,4 +189,223 @@ public class MyClass {
 
 
     }
+
+    // This method shows what it's like to call classes from other packages
+    // If looked into the classes in Package 2, ACCESS MODIFIERS are used.
+    private static void callingPackage2()
+    {
+        Pack2 pack2 = new Pack2();
+        System.out.println(pack2.pack2Str);
+        pack2.pack2Method();
+        //pack2.pack2Str1;  // Can't access pack2Str1 outside the package because it's protected.
+        pack2.myMethod(); // Can access myMethod because it's public
+    }
+
+    //This method shows example of encapsulation.
+    // Encapsulation is the use of get and set methods and also using access modifiers for security of the program
+    private static void encapsulation()
+    {
+        System.out.println("\nUse of Encapsulation\n");
+        MyPrivateClass myPrivateClass = new MyPrivateClass();
+        myPrivateClass.myMethod();
+        myPrivateClass.printString();
+        myPrivateClass.setStr("I'm setting the string here");
+        System.out.println(myPrivateClass.getStr());
+
+    }
+
+    //This method shows the use of polymorphism
+    //it is used with classes that shows an "is a" relationship
+    // This method also shows the use of overloading methods as well
+    private static void polymorphism()
+    {
+
+        System.out.println("\nUse of Polymorphism\n");
+        Employee e = new Employee();
+        System.out.println("Employee Salary: " + e.salary());
+
+        //Because FullTime Class extends employee, there is an "Is A" relationship between the 2 classes
+        // FullTime is an Employee
+
+        e = new FullTime();
+        System.out.println("FullTime Salary: " + e.salary() );
+
+        // Can't call e.myMethod() from the FullTime class because e is Reference Variable of type Employee
+        // and Employee Class doesn't contain a myMethod() method.
+        // Therefore, in order to class myMethod in the FullTime class, A FullTime reference variable is needed
+
+        FullTime f = new FullTime();
+        f.myMethod();
+
+        //Contractor "is a" Employee
+        e = new Contractor();
+        System.out.println("Contractor Salary: " + e.salary());
+
+
+        System.out.println("\nUsing Overridden methods\n");
+        //Static methods can't be overridden, but they can have the same method name
+        //Static methods are called using the class name
+        System.out.println(Employee.Designation());
+        System.out.println(FullTime.Designation());
+        System.out.println(Contractor.Designation());
+
+
+        System.out.println("\nUsing Overloaded Methods\n");
+        //Overloaded methods contain the same method name but the parameters are different.
+        MyOverloadingClass molc = new MyOverloadingClass();
+        molc.myMethod("Just a string here");
+        molc.myMethod("String and a int", 5);
+        molc.myMethod(55);
+    }
+
+    // This method contains examples of using abstract classes and abstract methods
+    private static void callingAbstractClasses()
+    {
+        Shape s = new Circle("Red", 5);
+        System.out.println(s.info());
+
+        s = new Square("Blue", 10);
+        System.out.println(s.info());
+    }
+
+    // This method shows the use of abstract interfaces
+    // Note, static methods can be called directly
+    private static void callingAbstractInterface()
+    {
+        ShapeI c = new CircleI("Red", 2);
+        System.out.println(c.info());
+
+        ShapeI s = new SquareI("Blue", 5);
+        System.out.println(s.info());
+
+        ShapeI.staticMethod();
+        System.out.println("The global variable in the Interface: " + ShapeI.i);
+    }
+
+    // There are 2 types of exception handling methods
+    // 1. Try-Catch block
+    // 2. Method throws exception
+    private static void exceptionHandling() {
+
+        /*//Example of Exception
+        int array[]= {1,2,3};
+        System.out.println(array[3]);*/
+
+        System.out.println("\nUsing Try- Catch Blocks\n");
+        usingTryCatchBlocks();
+
+       /* System.out.println("\n Throw exception \n");
+        try {
+            throwException();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }*/
+
+        System.out.println("\n Try-Catch + Throw Exception \n");
+        try {
+            tryCatchAndThrowExceptions();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("\n Initalize object in try block");
+        initializeInTry();
+
+        System.out.println("\nUser Defined Exception");
+        try {
+            userDefinedException();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Example of a try-catch block to handle exception
+    // Note: sys.out line did run this time
+    private static void usingTryCatchBlocks()
+    {
+        File file = new File("c://trycatch.txt");
+        try {
+            FileReader fr = new FileReader(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Prints after the exception:try-Catch");
+
+    }
+
+    // Example of throwing an exception
+    // Note the sys.out line didn't run
+    // Note program exit with code 0
+    private static void throwException() throws FileNotFoundException {
+        File file = new File("c://throw.txt");
+        FileReader fr = new FileReader(file);
+        System.out.println("Prints after the exception: Throw");
+    }
+
+    // Example of using both Try Catch and throwing exception
+    // Note the sys.out line didn't run
+    // Note program exit with code 0
+    private static void tryCatchAndThrowExceptions() throws FileNotFoundException {
+        File file = new File("c://tryCatchAndThrow.txt");
+        FileReader fr = null;
+        try {
+            fr = new FileReader(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+
+        }
+        finally {
+            try {
+                if (fr != null)
+                {
+                    fr.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("Prints after the exception:combo");
+    }
+
+    // The File reader object is instantiated in the try block
+    // Uses less code lines
+    public static void initializeInTry()
+    {
+        File file = new File("c://instantiateInTry.txt");
+        try(FileReader fr = new FileReader(file))
+        {
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Prints after the exception: Initialize in try!");
+    }
+
+    // Using user/developer defined exceptions
+    // uses the myException class
+    public static void userDefinedException() throws FileNotFoundException {
+        File file = new File("c://UserDefinedException.txt");
+        try {
+            //FileReader fr = new FileReader(file);
+            System.out.println("Printing in User Defined Exception:");
+            throw new MyException();
+        } catch (MyException e) {
+            e.printException();
+            e.printStackTrace();
+        }
+        System.out.println("Prints after the exception: Initialize in try!");
+    }
+
+    // Using File to read and write
+    // Using IO stream to read and write to file
+    public static void fileOperations()
+    {
+        fileOperations fO = new fileOperations();
+
+    }
 }
+
+
