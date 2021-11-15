@@ -33,6 +33,7 @@ public class MyClass{
 //        callingAbstractClasses();
 //        callingAbstractInterface();
         exceptionHandling();
+        fileOperations();
     }
 
     // This method introduces and explains how the static key word works
@@ -353,6 +354,11 @@ public class MyClass{
             e.printStackTrace();
         }
         System.out.println("Prints after the exception: Initialize in try!");
+
+    public static void fileOperations()
+    {
+        fileOperations fO = new fileOperations();
+
     }
 }
 
